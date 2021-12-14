@@ -86,6 +86,7 @@ Best practice is to have a separate logging account for your data bunker. This a
 1. (Optional) Add a life cycle rule named *Delete old logs*, press **Next**
 1. (Optional) Add a transition rule for both the current and previous versions to move to Glacier after 32 days. Press **Next**
 1. (Optional) Select the current and previous versions and set them to delete after *365* days
+1. Take note of the name of the Amazon S3 bucket you created 
 
 ### 3. Ensure cross account access is read-only
 
@@ -96,7 +97,8 @@ These instructions outline how to modify the cross account access created in ste
 1. Navigate to **IAM** and select **Roles**
 2. Select the organizations account access role for your organization: Note: the default is *OrganizationAccountAccessRole*
 3. Press **Attach Policy** and attach the AWS managed *ReadOnlyAccess* Policy
-4. Navigate back to the *OrganizationAccountAccessRole* and press the **X** to remove the *AdministratorAccess* policy
+4. Press **Attach Policy** and attach the AWSS3READONLYACCESS as well
+5. Navigate back to the *OrganizationAccountAccessRole* and press the **X** to remove the *AdministratorAccess* policy
 
 ### 4. Turn on CloudTrail from the management account
 
@@ -105,7 +107,7 @@ These instructions outline how to modify the cross account access created in ste
 1. Select **Trails** from the menu on the left
 1. Press **Create Trail**
 1. Enter a name for the trail such as *OrganizationTrail*
-1. Select *Yes* next to *Apply trail to my organization*
+1. Select *Yes* next to *Apply trail to all my organizations*
 1. Under *Storage location*, select *No* for *Create new S3 bucket* and enter the *bucket name* of the bucket created in step 2
 
 ### Verification
